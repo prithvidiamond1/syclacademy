@@ -116,7 +116,7 @@ all of the exercises.
 
 | Implementation | Supported Platforms | Supported Devices | Required Version |
 |----------------|---------------------|-------------------|------------------|
-| DPC++ | [Intel DevCloud](#connecting-to-devcloud-via-ssh) <br> Windows 10 Visual Studio 2019 (64bit) <br> Red Hat Enterprise Linux 8, CentOS 8<br> Ubtuntu 18.04 LTS, 20.04 LTS (64bit)<br> Refer to [System Requirements][oneAPI-system-requirements] for more details | Intel CPU (OpenCL) <br> Intel GPU (OpenCL) <br> Intel FPGA (OpenCL) <br> Nvidia GPU (CUDA)* | 2021.4	|
+| DPC++ | Windows 10 Visual Studio 2019 (64bit) <br> Red Hat Enterprise Linux 8, CentOS 8<br> Ubtuntu 18.04 LTS, 20.04 LTS (64bit)<br> Refer to [System Requirements][oneAPI-system-requirements] for more details | Intel CPU (OpenCL) <br> Intel GPU (OpenCL) <br> Intel FPGA (OpenCL) <br> Nvidia GPU (CUDA)* | 2021.4	|
 | AdaptiveCpp | Any Linux | CPU (OpenMP) <br> AMD GPU (ROCm)*** <br> NVIDIA GPU (CUDA)<br> Intel GPU (Level Zero)<br> Intel CPU, GPU (OpenCL) | 23.10.0 from Nov 1, 2023 or newer |
 
 \* Supported in open source project only
@@ -135,9 +135,6 @@ dependencies they require.
 To set up DPC++ follow the [getting started instructions][dpcpp-getting-started].
 
 You can also use a [Docker* image][docker-container-oneapi].
-
-If you are using the [Intel DevCloud][intel-devcloud] then the latest version of DPC++ will
-already be installed and available in the path.
 
 #### Installing AdaptiveCpp
 
@@ -271,8 +268,7 @@ Invoking CMake from the command line example usage:
 
 ### Getting started with compiling DPC++
 
-First you have to ensure that your environment is configured to use DPC++ (note
-if you are using the Intel DevCloud then you don't need to do this step).
+First you have to ensure that your environment is configured to use DPC++.
 
 On Linux simply call the `setvars.sh` which is available in `/opt/intel/oneapi`
 for sudo or root users and ~/intel/oneapi/ when installed as a normal user.
@@ -314,20 +310,6 @@ Once you have completed any given exercise make sure to compare your implementat
 
 Hosted by tech.io, this [SYCL Introduction](https://tech.io/playgrounds/48226/introduction-to-sycl/introduction-to-sycl-2) tutorial introduces the concepts of SYCL. The website also provides the ability to compile and execute SYCL code from your web browser.
 
-## Connecting to DevCloud via SSH
-
-* Start by creating an [Intel DevCloud account][intel-devcloud] account if you do not already have one and login in.
-* Initialize the SSH configuration by clicking on [Automated Configuration](https://devcloud.intel.com/oneapi/documentation/connect-with-ssh-linux-macos/) and follow the instructions to setup the SSH configuration file.
-* SSH into DevCloud (```ssh devcloud```)
-
-## Connect to DevCloud via Jupyter Notebooks
-
-* Start by creating an [Intel DevCloud account][intel-devcloud] account if you do not already have one and login in.
-* Go to [training](https://console.cloud.intel.com/training) and click on ```Launch JupyterLab´´´
-* In the ```Jupiter Notebook``` select *File->New->Terminal*
-
-You are now ready to start with the first [lesson][lesson-1-slides]. Enjoy !
-
 ## Building the Exercises for DPC++
 
 * Execute the following command to download SYCLAcademy:
@@ -335,10 +317,6 @@ You are now ready to start with the first [lesson][lesson-1-slides]. Enjoy !
 git clone --recursive https://github.com/codeplaysoftware/syclacademy.git
 
 ```
-* If you are using **DevCloud via ssh**, run:
- ```sh
- module load cmake
- ```
 
 * To create the code_exercises directory structure with the Makefiles:
 ```sh
@@ -350,7 +328,6 @@ cmake ../ "-GUnix Makefiles" -DSYCL_ACADEMY_USE_DPCPP=ON -DSYCL_ACADEMY_ENABLE_S
 
 
 [dpcpp-getting-started]: https://software.intel.com/content/www/us/en/develop/articles/installation-guide-for-intel-oneapi-toolkits.html
-[intel-devcloud]: https://consumer.intel.com/intelcorpb2c.onmicrosoft.com/B2C_1A_UnifiedLogin_SISU_CML_SAML/generic/login?entityId=www.intel.com&ui_locales=en
 [docker-container-oneapi]: https://software.intel.com/content/www/us/en/develop/documentation/get-started-with-intel-oneapi-base-linux/top/using-containers.html
 [oneAPI-system-requirements]: https://software.intel.com/content/www/us/en/develop/articles/intel-oneapi-base-toolkit-system-requirements.html
 
