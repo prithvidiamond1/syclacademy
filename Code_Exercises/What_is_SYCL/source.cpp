@@ -9,6 +9,9 @@
 */
 
 // Task: Include SYCL header file
+#include <sycl/sycl.hpp>
+
+#include "../helpers.hpp"
 
 // The below tests that the header file has been included
-int main() {}
+int main() {SYCLACADEMY_ASSERT(true);}

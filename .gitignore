@@ -1,4 +1,1 @@
-.vscode/settings.json
-build*
-.vscode
-
+**/lib/

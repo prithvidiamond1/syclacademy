@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e  # Exit on error
+
+# Default to Release build
+BUILD_TYPE="Release"
+
+# Check for -d flag
+if [ "$1" == "-d" ]; then
+    BUILD_TYPE="Debug"
+fi
+
+echo "Building in $BUILD_TYPE mode..."
+
+mkdir -p lib # -p needed to supress error if lib directory already exists
+cd lib
+cmake .. -DCMAKE_CXX_COMPILER=icpx -DCMAKE_C_COMPILER=icx -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+cmake --build . -j$(nproc)
+
+echo "Build complete! Binary: lib/test_sycl"
