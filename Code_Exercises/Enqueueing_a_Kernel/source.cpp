@@ -34,15 +34,27 @@
  *
  */
 
-#include <iostream>
+// #include <iostream>
 
 #include "../helpers.hpp"
 
+#include <sycl/sycl.hpp>
+
 int main() {
   // Print "Hello World!\n"
-  std::cout << "Hello World!\n";
+  // std::cout << "Hello World!\n";
 
   // Task: Have this message print from the SYCL device instead of the host
+
+  auto q = sycl::queue(sycl::default_selector_v);
+
+  q.submit([&](sycl::handler &cgh){
+    auto out = sycl::stream{1024, 1024, cgh};
+
+    cgh.single_task([=]() {
+      out << "Hello World!\n";
+    });
+  }).wait();
 
   SYCLACADEMY_ASSERT(true);
 }
