@@ -1,0 +1,9 @@
+CompileFlags:
+  CompilationDatabase: lib/
+  Add: [
+    -fsycl,
+    -ferror-limit=0,
+  ]
+
+Index:
+  Background: Build  # Enable background indexing for better performance
