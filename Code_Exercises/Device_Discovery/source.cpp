@@ -49,6 +49,7 @@
  *
 */
 
+#include <sycl/info/info_desc.hpp>
 #include <sycl/sycl.hpp>
 
 #include "../helpers.hpp"
@@ -60,7 +61,11 @@ int main() {
 
   try {
     // Task: add a device selector to create this queue with an Intel GPU
-    auto defaultQueue = sycl::queue{};
+    auto defaultQueue = sycl::queue{[&](const sycl::device &dev){
+      return 1;
+    }};
+
+    std::cout << defaultQueue.get_device().get_info<sycl::info::device::name>() << std::endl;
 
     {
       auto bufA = sycl::buffer{&a, sycl::range{1}};
