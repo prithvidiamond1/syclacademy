@@ -22,7 +22,9 @@ int main() {
   // Task: create a queue to a device which supports USM allocations
   // Remember to check for exceptions
   try{
-    auto usmQueue = sycl::queue{[=](sycl::exception_list el){
+    // custom device selector to get USM device using usm_device_allocations aspect
+    auto usmQueue = sycl::queue{[](const sycl::device &dev) -> int { return (dev.has(sycl::aspect::usm_device_allocations) ? 1 : 0); },
+      [=](sycl::exception_list el){
       for (auto e: el){
         std::rethrow_exception(e);
       }
